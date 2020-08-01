@@ -55,15 +55,14 @@
 
         edit: function( props ) {
             
-            var children = [];
-
             if(null == props.attributes.location){
                 props.attributes.location = 'Location';
             };
 
-            children.push(
-                el ( 'div', { class: 'multiyc-title' }, 'MultiYC Wheatherizer' )
-            );
+            var children = [];
+                children.push(
+                    el ( 'div', { class: 'multiyc-title' }, 'MultiYC Wheatherizer' )
+                );
         
             var setLocation = function( event ) {
                 // console.log(event.target.value); return;
@@ -77,11 +76,13 @@
                 event.preventDefault();
             }
 
+            /*
             var setService = function( event ) {
                 var selected = event.target.querySelector( 'option:checked' );
                 props.setAttributes( { service: selected.value } );
                 event.preventDefault();
             }
+            */
 
             if ( props.attributes.location ) {
                 children.push( 
@@ -121,7 +122,6 @@
                 } 
             );
         }
-
     })
 })(
     window.wp.blocks,

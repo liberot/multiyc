@@ -3,7 +3,7 @@
 /**
  * Plugin Name: MultiYC
  * Plugin URI: https://myc.multiyc.de
- * Description: Wheather Service Plugin
+ * Description: MultiYC Wheather-Service Plugin-Blocker
  * Version: 1.1.0
  * Author: 
  *
@@ -43,9 +43,9 @@ function multiyc_wheather_register_block() {
 		'editor_script' => 'multiyc_wheather'
 	) );
 
-  if ( function_exists( 'wp_set_script_translations' ) ) {
-  		wp_set_script_translations( 'multiyc_wheather', 'multiyc' );
-  }
+	if ( function_exists( 'wp_set_script_translations' ) ) {
+			wp_set_script_translations( 'multiyc_wheather', 'multiyc' );
+	}
 
 }
 add_action( 'init', 'multiyc_wheather_register_block' );
