@@ -96,7 +96,7 @@ function exec_wheather_service( $req ) {
 
 // https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-custom-endpoints/
 // https://developer.wordpress.org/rest-api/key-concepts/
-// http://127.0.0.1:8083/?rest_route=/multiyc/wheather/Moscow Los Angeles
+// http://127.0.0.1:8083/?rest_route=/multiyc/wheather/Brooklyn Miami
 add_action('rest_api_init', function () {
 	register_rest_route(
 		'multiyc', '/wheather/(?P<qry>[a-zA-Z0-9-_\s+]+)', 
