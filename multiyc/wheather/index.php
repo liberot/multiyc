@@ -12,7 +12,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-add_action( 'init', function() {
+add_action('init', function() {
 
 	load_plugin_textdomain('multiyc', false, basename(__DIR__).'/languages');
 
@@ -98,10 +98,13 @@ function exec_wheather_service( $req ) {
 // https://developer.wordpress.org/rest-api/key-concepts/
 // http://127.0.0.1:8083/?rest_route=/multiyc/wheather/Moscow Los Angeles
 add_action('rest_api_init', function () {
-	register_rest_route( 'multiyc', '/wheather/(?P<qry>[a-zA-Z0-9-_\s+]+)', array(
-		'methods' => 'GET',
-		'callback' => 'exec_wheather_service',
-	));
+	register_rest_route(
+		'multiyc', '/wheather/(?P<qry>[a-zA-Z0-9-_\s+]+)', 
+			array(
+				'methods'=>'GET',
+				'callback'=>'exec_wheather_service',
+			)
+	);
 });
 
 /*
