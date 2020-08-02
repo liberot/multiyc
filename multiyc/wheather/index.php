@@ -12,46 +12,42 @@
 
 defined( 'ABSPATH' ) || exit;
 
-add_action( 'init', 'multiyc_wheather_load_textdomain' );
+add_action( 'init', function() {
 
-function multiyc_wheather_load_textdomain() {
-	load_plugin_textdomain( 'multiyc', false, basename( __DIR__ ) . '/languages' );
-}
+	load_plugin_textdomain('multiyc', false, basename(__DIR__).'/languages');
 
-add_action( 'init', 'multiyc_wheather_register_block' );
-function multiyc_wheather_register_block() {
-
-	if ( ! function_exists( 'register_block_type' ) ) {
+	if (!function_exists('register_block_type')) {
 		return;
+	}
+
+	if (function_exists('wp_set_script_translations')) {
+		wp_set_script_translations('multiyc_wheather', 'multiyc');
 	}
 
 	wp_register_script(
 		'multiyc_wheather',
-		plugins_url( 'block.js', __FILE__ ),
-		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'underscore' ),
-		filemtime( plugin_dir_path( __FILE__ ) . 'block.js' )
+			plugins_url('block.js', __FILE__),
+			array('wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'underscore' ),
+			filemtime(plugin_dir_path(__FILE__).'block.js')
 	);
 
 	wp_register_style(
 		'multiyc_wheather',
-		plugins_url( 'style.css', __FILE__ ),
-		array(),
-		filemtime( plugin_dir_path( __FILE__ ) . 'style.css' )
+			plugins_url('style.css', __FILE__),
+			array(),
+			filemtime(plugin_dir_path(__FILE__).'style.css')
 	);
 
-	register_block_type( 'multiyc/wheather', array(
-		'style' => 'multiyc_wheather',
-		'editor_script' => 'multiyc_wheather'
-	) );
+	register_block_type( 
+		'multiyc/wheather', 
+			array(
+				'style' => 'multiyc_wheather',
+				'editor_script' => 'multiyc_wheather'
+			)
+		);
+});
 
-	if ( function_exists( 'wp_set_script_translations' ) ) {
-			wp_set_script_translations( 'multiyc_wheather', 'multiyc' );
-	}
-
-}
-
-add_action('wp_head', 'add_wheather_service_js');
-function add_wheather_service_js() { 
+add_action('wp_head', function () { 
 
 $buf = <<<EOD
 <script type='text/javascript'>
@@ -72,7 +68,7 @@ $buf = <<<EOD
 EOD;
 
 	echo $buf;
-}
+});
 
 function exec_wheather_service( $req ) {
 	// http://127.0.0.1:8083/wp-content/plugins/multiyc/wheather/service.php?q=Munich
@@ -101,13 +97,12 @@ function exec_wheather_service( $req ) {
 // https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-custom-endpoints/
 // https://developer.wordpress.org/rest-api/key-concepts/
 // http://127.0.0.1:8083/?rest_route=/multiyc/wheather/Moscow Los Angeles
-add_action('rest_api_init', 'add_service_route');
-function add_service_route () {
-	register_rest_route( 'multiyc', '/wheather/(?P<qry>[a-zA-Z0-9-\s+]+)', array(
+add_action('rest_api_init', function () {
+	register_rest_route( 'multiyc', '/wheather/(?P<qry>[a-zA-Z0-9-_\s+]+)', array(
 		'methods' => 'GET',
 		'callback' => 'exec_wheather_service',
 	));
-};
+});
 
 /*
 add_action( 'init', 'add_service_route' );
@@ -125,8 +120,3 @@ function select_service_route( $query_vars ){
 	return $query_vars;
 }
 */
-
-
-
-
-
