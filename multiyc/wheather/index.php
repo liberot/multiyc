@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Plugin Name: MultiYC
  * Plugin URI: https://myc.multiyc.de
@@ -49,23 +48,21 @@ add_action('init', function() {
 
 add_action('wp_head', function () { 
 
-$buf = <<<EOD
-<script type='text/javascript'>
-	function consumeWheatherService(qry, rid){;
-		var url = '';
-			url+= '/?rest_route=/multiyc/wheather';
-			url+= '/'+qry;
-		var xhr = new XMLHttpRequest();
-			xhr.addEventListener('load', ()=> {
-				document.getElementById(rid).innerHTML = xhr.responseText;
-				console.log(xhr.responseText);
-			});
-			xhr.open('GET', url);
-			xhr.send();
-	};
-</script>
-
-EOD;
+	$buf = "";
+	$buf.= "<script type='text/javascript'>";
+	$buf.= "function consumeWheatherService(qry, rid){;";
+	$buf.= "   var url = '';";
+	$buf.= "   url+= '/?rest_route=/multiyc/wheather';";
+	$buf.= "   url+= '/'+qry;";
+	$buf.= "   var xhr = new XMLHttpRequest();";
+	$buf.= "   xhr.addEventListener('load', ()=> {";
+	$buf.= "      document.getElementById(rid).innerHTML = xhr.responseText;";
+	$buf.= "      console.log(xhr.responseText);";
+	$buf.= "   });";
+	$buf.= "   xhr.open('GET', url);";
+	$buf.= "   xhr.send();";
+	$buf.= "};";
+	$buf.="</script>";
 
 	echo $buf;
 });
@@ -81,17 +78,17 @@ function exec_wheather_service( $req ) {
 	$url = 'http://api.weatherstack.com/current';
 	$url.= '?access_key='.$key.'&query='.$qry;
 	
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $url);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-	curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-	$result = curl_exec($ch);
-	curl_close($ch);
+	$crl = curl_init();
+	curl_setopt($crl, CURLOPT_URL, $url);
+	curl_setopt($crl, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($crl, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt($crl, CURLOPT_SSL_VERIFYPEER, false);
+	curl_setopt($crl, CURLOPT_SSL_VERIFYHOST, 0);
+	$res = curl_exec($crl);
+	curl_close($crl);
 
 	header('Content-Type: application/json');
-	echo $result;
+	echo $res;
 }
 
 // https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-custom-endpoints/
