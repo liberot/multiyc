@@ -79,10 +79,12 @@ function exec_wheather_service( $req ) {
 	// http://127.0.0.1:8083/wp-content/plugins/multiyc/wheather/service.php?q=Munich
 	// http://127.0.0.1:8083/wp-content/plugins/multiyc/wheather/service.php?q=New York
 	$key = '66707be6afe741429f83473ace17bb13';
+	
 	$qry = $req->get_param('qry');
 	$qry = preg_replace('/\s+/', '_', $qry);
 
-	$url = 	'http://api.weatherstack.com/current?access_key='.$key.'&query='.$qry;
+	$url = 'http://api.weatherstack.com/current';
+	$url.= '?access_key='.$key.'&query='.$qry;
 	
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
