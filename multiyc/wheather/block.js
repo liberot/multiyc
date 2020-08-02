@@ -7,9 +7,9 @@
     var buildClientComponent = function( props ){
 
         if(null == props.rid){
-            props.rid = "wres"; 
-            props.rid+= "_"+parseInt(Math.random() *1000000);
-            props.rid+= "_"+parseInt(Math.random() *1000000);
+            props.rid = 'wres'; 
+            props.rid+= '_'+parseInt(Math.random() *1000000);
+            props.rid+= '_'+parseInt(Math.random() *1000000);
         }
         
         var js = '';
@@ -60,8 +60,8 @@
                 props.attributes.location = 'Location';
             };
 
-            var children = [];
-                children.push(
+            var nodes = [];
+                nodes.push(
                     el ( 'div', { class: 'multiyc-title' }, 'MultiYC Wheatherizer' )
                 );
         
@@ -85,7 +85,7 @@
             */
 
             if( props.attributes.location ) {
-                children.push( 
+                nodes.push( 
                     buildClientComponent( 
                         { location: props.attributes.location },
                         { rid: props.attributes.rid },
@@ -94,22 +94,23 @@
                 );
             }
  
-            children.push(
+            nodes.push(
                 el( 'input', { type: 'text', placeholder: props.attributes.location, onChange: setLocation } )
             );
 
-            children.push(
+            nodes.push(
                 el( 'select', { value: props.attributes.location, onChange: setLocation },
                     el( 'option', null, ' -- Example Locations -- ' ),
                     el( 'option', { value: 'New York' }, 'New York' ),
                     el( 'option', { value: 'Chicago' }, 'Chicago' ),
                     el( 'option', { value: 'Munich' }, 'Munich' ),
                     el( 'option', { value: 'Santa Clara' }, 'Santa Clara' ),
-                    el( 'option', { value: 'Timmendorfer Strand' }, 'Timmendorfer Strand' )
+                    el( 'option', { value: 'Brooklyn Los Angeles' }, 'Brooklyn Los Angeles' ),
+                    el( 'option', { value: 'Hollywood Miami' }, 'Hollywood Miami' )
                 )
             );
 
-            return el( 'form', { class: 'multiyc-wheather-editor-form' }, children );
+            return el( 'form', { class: 'multiyc-wheather-editor-form' }, nodes );
         },
  
         save: function( props ) {
