@@ -56,10 +56,9 @@ function add_wheather_service_js() {
 $buf = <<<EOD
 <script type='text/javascript'>
 	function consumeWheatherService(qry, rid){;
-		var url='';
-			// url='/wp-content/plugins/multiyc/wheather/service.php';
-			url='/?rest_route=/multiyc/wheather';
-			url+='/'+qry;
+		var url = '';
+			url+= '/?rest_route=/multiyc/wheather';
+			url+= '/'+qry;
 		var xhr = new XMLHttpRequest();
 			xhr.addEventListener('load', ()=> {
 				document.getElementById(rid).innerHTML = xhr.responseText;
@@ -101,7 +100,7 @@ function exec_wheather_service( $req ) {
 
 // https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-custom-endpoints/
 // https://developer.wordpress.org/rest-api/key-concepts/
-// http://127.0.0.1:8083/?rest_route=/multiyc/wheather
+// http://127.0.0.1:8083/?rest_route=/multiyc/wheather/Moscow Los Angeles
 add_action('rest_api_init', 'add_service_route');
 function add_service_route () {
 	register_rest_route( 'multiyc', '/wheather/(?P<qry>[a-zA-Z0-9-\s+]+)', array(
