@@ -1,4 +1,5 @@
 ( function( blocks, element, editor ) {
+    
     // https://developer.wordpress.org/block-editor/packages/packages-blocks/
     var el = element.createElement;
     var textEdit = editor.RichText;
@@ -65,7 +66,6 @@
                 );
         
             var setLocation = function( event ) {
-                // console.log(event.target.value); return;
                 // var selected = event.target.querySelector( 'option:checked' );
                 // props.setAttributes( { location: selected.value } );
                 var val = event.target.value;
@@ -84,7 +84,7 @@
             }
             */
 
-            if ( props.attributes.location ) {
+            if( props.attributes.location ) {
                 children.push( 
                     buildClientComponent( 
                         { location: props.attributes.location },
@@ -95,7 +95,7 @@
             }
  
             children.push(
-                el ( 'input', { type: 'text', placeholder: props.attributes.location, onChange: setLocation } )
+                el( 'input', { type: 'text', placeholder: props.attributes.location, onChange: setLocation } )
             );
 
             children.push(
