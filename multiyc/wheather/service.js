@@ -9,7 +9,7 @@ function getIconByIndex( widx ){
         [ 365, 362, 359, 353, 320, 317, 314, 311, 296, 293, 266, 182, 176 ],
         // rain
         [ 356, 308, 305, 302, 299, 284 ],
-        // partcloud
+        // partcloudrain
         [ 293, 263, 185 ],
         // mist
         [ 260, 248, 143 ],
@@ -86,7 +86,8 @@ function consumeWheatherService(qry, rid){;
             var name = json.location.name;
             var country = json.location.country;
             // var weather_icon = json.current.weather_icons[0];
-            var snowIcon = getIconByIndex(371);
+            var weather_code = parseInt(json.current.weather_code);
+            var snowIcon = getIconByIndex(weather_code);
 
             document.getElementById('location:' +rid).innerHTML = name +', ' +country;
             document.getElementById('temperature:' +rid).innerHTML = temperature;
