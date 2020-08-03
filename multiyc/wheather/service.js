@@ -81,9 +81,15 @@ MultiYC.consumeWheatherService = function(qry, rid){;
                 return;
             };
             
-            var temperature = json.current.temperature;
-            var wind_speed = json.current.wind_speed;
-            var wind_dir = json.current.wind_dir;
+            var temperature = String(json.current.temperature);
+                temperature = temperature.replace(/\D/g, '');
+
+            var wind_speed = String(json.current.wind_speed);
+                wind_speed = wind_speed.replace(/\D/g, '');
+
+            var wind_dir = String(json.current.wind_dir);
+                wind_dir = wind_dir.replace(/[^NWSE]/g, '');
+                    
             var name = json.location.name;
             var country = json.location.country;
             
