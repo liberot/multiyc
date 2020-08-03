@@ -76,16 +76,25 @@ function exec_wheather_service($req) {
 	$url = 'http://api.weatherstack.com/current';
 	$url.= '?access_key='.$key.'&query='.$qry;
 	
-	$crl = curl_init();
-	curl_setopt($crl, CURLOPT_URL, $url);
-	curl_setopt($crl, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt($crl, CURLOPT_FOLLOWLOCATION, 1);
-	curl_setopt($crl, CURLOPT_SSL_VERIFYPEER, false);
-	curl_setopt($crl, CURLOPT_SSL_VERIFYHOST, 0);
-	$res = curl_exec($crl);
-	curl_close($crl);
+	if(function_exists('curl_version')){
 
-	header('Content-Type: application/json');
+		$crl = curl_init();
+		curl_setopt($crl, CURLOPT_URL, $url);
+		curl_setopt($crl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($crl, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt($crl, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($crl, CURLOPT_SSL_VERIFYHOST, 0);
+		$res = curl_exec($crl);
+		curl_close($crl);
+
+		header('Content-Type: application/json');
+		echo $res;
+
+		return;
+	}
+	
+	$res = @file_get_contents($url);
+	header('Content-Type: text/html');
 	echo $res;
 }
 
