@@ -20,7 +20,6 @@
             
             'div', {
                 id: props.rid,
-                rid: props.rid,
                 loc: props.location,
                 service: props.service,
                 class: 'multiyc-wheather-client-div'
@@ -37,11 +36,6 @@
             el( 'div', { class: 'winddir-title' }, __('Direction:') ),
             el( 'div', { id: 'wind_dir:' +props.rid, class: 'wind-dir' } ),
             
-            /*
-            el( 'div', { class: 'weathericon-title' }, __('Icon:') ),
-            el( 'img', { id: 'weather_icon:' +props.rid, class: 'weather-icon' } ),
-            */
-
             el( 'div', { class: 'weathericon-title' }, __('Icon:') ),
             el( 'div', { id: 'weather_icon:' +props.rid, class: 'weather-icon' } ),
             
@@ -74,7 +68,7 @@
             rid: {
                 type: 'string',
                 source: 'attribute',
-                attribute: 'rid',
+                attribute: 'id',
                 selector: 'div',
             }
         },

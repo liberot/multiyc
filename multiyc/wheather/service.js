@@ -50,7 +50,7 @@ function getIconByIndex( widx ){
         }
     };
     
-    console.log(widx, pos);
+    // console.log(widx, pos);
     return icons[pos];
 }
 
@@ -85,7 +85,6 @@ function consumeWheatherService(qry, rid){;
             var wind_dir = json.current.wind_dir;
             var name = json.location.name;
             var country = json.location.country;
-            // var weather_icon = json.current.weather_icons[0];
             var weather_code = parseInt(json.current.weather_code);
             var snowIcon = getIconByIndex(weather_code);
 
@@ -93,8 +92,7 @@ function consumeWheatherService(qry, rid){;
             document.getElementById('temperature:' +rid).innerHTML = temperature;
             document.getElementById('wind_speed:' +rid).innerHTML = wind_speed;
             document.getElementById('wind_dir:' +rid).innerHTML = wind_dir;
-            // document.getElementById('weather_icon:' +rid).src = weather_icon;
-
+            
             document.getElementById('weather_icon:' +rid).innerHTML = snowIcon;
         });
     
