@@ -68,8 +68,6 @@ add_action('wp_head', function() {
 });
 
 function exec_wheather_service($req) {
-	// http://127.0.0.1:8083/wp-content/plugins/multiyc/wheather/service.php?q=Munich
-	// http://127.0.0.1:8083/wp-content/plugins/multiyc/wheather/service.php?q=New York
 	$key = '66707be6afe741429f83473ace17bb13';
 	
 	$qry = $req->get_param('qry');

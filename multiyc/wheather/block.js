@@ -1,8 +1,9 @@
-( function( blocks, element, editor ) {
+( function( blocks, element, editor, i18n ) {
     
     // https://developer.wordpress.org/block-editor/packages/packages-blocks/
     var el = element.createElement;
     var textEdit = editor.RichText;
+    var __ = i18n.__;
 
     var buildClientComponent = function( props ){
 
@@ -29,23 +30,26 @@
  
     blocks.registerBlockType( 'multiyc/wheather', {
 
-        title: 'MultiYC Wheatherizer', 
+        title: __('MultiYC Wheatherizer'), 
         icon: 'format-image',
         category: 'widgets',
  
         attributes: {
+            
             location: {
                 type: 'string',
                 source: 'attribute',
                 attribute: 'loc',
                 selector: 'div',
             },
+            
             service: {
                 type: 'string',
                 source: 'attribute',
                 attribute: 'service',
                 selector: 'div',
             },
+            
             rid: {
                 type: 'string',
                 source: 'attribute',
@@ -60,9 +64,9 @@
                 props.attributes.location = 'Location';
             };
 
-            var nodes = [];
-                nodes.push(
-                    el ( 'div', { class: 'multiyc-title' }, 'MultiYC Wheatherizer' )
+            var node = [];
+                node.push(
+                    el ( 'div', { class: 'multiyc-title' }, __('MultiYC Wheatherizer') )
                 );
         
             var setLocation = function( event ) {
@@ -76,16 +80,8 @@
                 event.preventDefault();
             }
 
-            /*
-            var setService = function( event ) {
-                var selected = event.target.querySelector( 'option:checked' );
-                props.setAttributes( { service: selected.value } );
-                event.preventDefault();
-            }
-            */
-
             if( props.attributes.location ) {
-                nodes.push( 
+                node.push( 
                     buildClientComponent( 
                         { location: props.attributes.location },
                         { rid: props.attributes.rid },
@@ -94,23 +90,23 @@
                 );
             }
  
-            nodes.push(
+            node.push(
                 el( 'input', { type: 'text', placeholder: props.attributes.location, onChange: setLocation } )
             );
 
-            nodes.push(
+            node.push(
                 el( 'select', { value: props.attributes.location, onChange: setLocation },
-                    el( 'option', null, ' -- Example Locations -- ' ),
-                    el( 'option', { value: 'New York' }, 'New York' ),
-                    el( 'option', { value: 'Chicago' }, 'Chicago' ),
-                    el( 'option', { value: 'Munich' }, 'Munich' ),
-                    el( 'option', { value: 'Santa Clara' }, 'Santa Clara' ),
-                    el( 'option', { value: 'Brooklyn Los Angeles' }, 'Brooklyn Los Angeles' ),
-                    el( 'option', { value: 'Hollywood Miami' }, 'Hollywood Miami' )
+                    el( 'option', null, __(' -- Example Locations -- ') ),
+                    el( 'option', { value: __('New York') }, 'New York' ),
+                    el( 'option', { value: __('Chicago') }, 'Chicago' ),
+                    el( 'option', { value: __('Munich') }, 'Munich' ),
+                    el( 'option', { value: __('Santa Clara') }, 'Santa Clara' ),
+                    el( 'option', { value: __('Brooklyn Los Angeles') }, 'Brooklyn Los Angeles' ),
+                    el( 'option', { value: __('Hollywood Miami') }, 'Hollywood Miami' )
                 )
             );
 
-            return el( 'form', { class: 'multiyc-wheather-editor-form' }, nodes );
+            return el( 'form', { class: 'multiyc-wheather-editor-form' }, node );
         },
  
         save: function( props ) {
@@ -127,5 +123,6 @@
 })(
     window.wp.blocks,
     window.wp.element,
-    window.wp.blockEditor
+    window.wp.blockEditor,
+    window.wp.i18n
 );
