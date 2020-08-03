@@ -5,9 +5,25 @@ function consumeWheatherService(qry, rid){;
         url+= '/'+qry;
     
     var req = new XMLHttpRequest();
+        req.responseType = 'text';
         req.addEventListener('load', ()=> {
     
+            if(200 != req.status){
+                console.log(req.status);
+                return;
+            }
+
             var json = JSON.parse(req.responseText);
+            if(null == json){
+                console.log('no JSON:', req.responseText);
+                return;
+            }
+
+            if('false' == json.success || false == json.success){
+                console.log('no result:', req.responseText);
+                return;
+            }
+            
             var temperature = json.current.temperature;
             var wind_speed = json.current.wind_speed;
             var wind_dir = json.current.wind_dir;
