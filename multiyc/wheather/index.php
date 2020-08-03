@@ -56,8 +56,12 @@ add_action('wp_head', function() {
 	$buf.= "   url+= '/'+qry;";
 	$buf.= "   var xhr = new XMLHttpRequest();";
 	$buf.= "   xhr.addEventListener('load', ()=> {";
-	$buf.= "      document.getElementById(rid).innerHTML = xhr.responseText;";
 	$buf.= "      console.log(xhr.responseText);";
+	$buf.= "      var json = JSON.parse(xhr.responseText);";
+	$buf.= "      document.getElementById('location:' +rid).innerHTML = json.location.region;";
+	$buf.= "      document.getElementById('temperature:' +rid).innerHTML = json.current.temperature;";
+	$buf.= "      document.getElementById('wind_speed:' +rid).innerHTML = json.current.wind_speed;";
+	$buf.= "      document.getElementById('wind_dir:' +rid).innerHTML = json.current.wind_dir;";
 	$buf.= "   });";
 	$buf.= "   xhr.open('GET', url);";
 	$buf.= "   xhr.send();";

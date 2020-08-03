@@ -21,9 +21,12 @@
                 loc: props.location,
                 rid: props.rid,
                 service: props.service,
-                class: 'multiyc-wheather-client-div'
+                class: 'multiyc-wheather-client-div '+props.rid
             },
-            el( 'div', { id: props.rid }, props.location ),
+            el( 'div', { id: 'location:' +props.rid, class: 'location' }, props.location ),
+            el( 'div', { id: 'temperature:' +props.rid, class: 'temperature' } ),
+            el( 'div', { id: 'wind_speed:' +props.rid, class: 'wind-speed' } ),
+            el( 'div', { id: 'wind_dir:' +props.rid, class: 'wind-dir' } ),
             el( 'script', { type: 'text/javascript' }, js )
         );
     }
