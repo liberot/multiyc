@@ -1,6 +1,6 @@
-function getIconByIndex( widx ){
+function getIconByIndex(widx){
 
-    var idxs = [
+    var widxs = [
         // cloud
         [ 395, 392, 377, 374, 371, 368, 350, 338, 335, 332, 329, 326, 323, 281, 227 ],
         // thundr
@@ -43,14 +43,13 @@ function getIconByIndex( widx ){
     ];
 
     var pos = 0;
-    for(var idx in idxs){
-        if(-1 != idxs[idx].indexOf(widx)){
+    for(var idx in widxs){
+        if(-1 != widxs[idx].indexOf(widx)){
             pos = idx;
             break;
         }
     };
     
-    // console.log(widx, pos);
     return icons[pos];
 }
 
@@ -63,30 +62,30 @@ function consumeWheatherService(qry, rid){;
     var req = new XMLHttpRequest();
         req.responseType = 'text';
         req.addEventListener('load', ()=> {
-    
+            
             if(200 != req.status){
                 console.log(req.status);
                 return;
-            }
-
+            };
+            
             var json = JSON.parse(req.responseText);
             if(null == json){
                 console.log('no JSON:', req.responseText);
                 return;
-            }
-
+            };
+            
             if('false' == json.success || false == json.success){
-                console.log('no result:', req.responseText);
+                console.log('logical no success:', req.responseText);
                 return;
-            }
+            };
             
             var temperature = json.current.temperature;
             var wind_speed = json.current.wind_speed;
             var wind_dir = json.current.wind_dir;
             var name = json.location.name;
             var country = json.location.country;
-            var weather_code = parseInt(json.current.weather_code);
-            var snowIcon = getIconByIndex(weather_code);
+            
+            var snowIcon = getIconByIndex(parseInt(json.current.weather_code));
 
             document.getElementById('location:' +rid).innerHTML = name +', ' +country;
             document.getElementById('temperature:' +rid).innerHTML = temperature;
