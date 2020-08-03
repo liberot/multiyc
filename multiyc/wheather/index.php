@@ -61,9 +61,9 @@ add_action('wp_head', function() {
 	$buf.= "      var wind_speed = json.current.wind_speed;";
 	$buf.= "      var wind_dir = json.current.wind_dir;";
 	$buf.= "      var name = json.location.name;";
-	$buf.= "      var region = json.location.region;";
+	$buf.= "      var country = json.location.country;";
 	$buf.= "      var weather_icon = json.current.weather_icons[0];";
-	$buf.= "      document.getElementById('location:' +rid).innerHTML = name +', ' +region;";
+	$buf.= "      document.getElementById('location:' +rid).innerHTML = name +', ' +country;";
 	$buf.= "      document.getElementById('temperature:' +rid).innerHTML = temperature;";
 	$buf.= "      document.getElementById('wind_speed:' +rid).innerHTML = wind_speed;";
 	$buf.= "      document.getElementById('wind_dir:' +rid).innerHTML = wind_dir;";
