@@ -48,6 +48,10 @@
 	color: #000;
 }
 
+.multiyc-wheather-client-div > .weather-icon > svg {
+	height: 64px;
+}
+	
 /* editor related */
 .multiyc-wheather-editor-form {
 	border-radius: 5px;
