@@ -24,6 +24,13 @@ add_action('init', function() {
 	}
 
 	wp_register_script(
+		'multiyc_wheather_service',
+			plugins_url('service.js', __FILE__),
+			array('jquery')
+	);
+	wp_enqueue_script('multiyc_wheather_service');
+
+	wp_register_script(
 		'multiyc_wheather',
 			plugins_url('block.js', __FILE__),
 			array('wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'underscore'),
@@ -46,38 +53,8 @@ add_action('init', function() {
 	);
 });
 
-add_action('wp_head', function() {
-
-	$buf = "";
-	$buf.= "<script type='text/javascript'>";
-	$buf.= "function consumeWheatherService(qry, rid){;";
-	$buf.= "   var url = '';";
-	$buf.= "   url+= '/?rest_route=/multiyc/wheather';";
-	$buf.= "   url+= '/'+qry;";
-	$buf.= "   var req = new XMLHttpRequest();";
-	$buf.= "   req.addEventListener('load', ()=> {";
-	$buf.= "      var json = JSON.parse(req.responseText);";
-	$buf.= "      var temperature = json.current.temperature;";
-	$buf.= "      var wind_speed = json.current.wind_speed;";
-	$buf.= "      var wind_dir = json.current.wind_dir;";
-	$buf.= "      var name = json.location.name;";
-	$buf.= "      var country = json.location.country;";
-	$buf.= "      var weather_icon = json.current.weather_icons[0];";
-	$buf.= "      document.getElementById('location:' +rid).innerHTML = name +', ' +country;";
-	$buf.= "      document.getElementById('temperature:' +rid).innerHTML = temperature;";
-	$buf.= "      document.getElementById('wind_speed:' +rid).innerHTML = wind_speed;";
-	$buf.= "      document.getElementById('wind_dir:' +rid).innerHTML = wind_dir;";
-	$buf.= "      document.getElementById('weather_icon:' +rid).src = weather_icon;";
-	$buf.= "   });";
-	$buf.= "   req.open('GET', url);";
-	$buf.= "   req.send();";
-	$buf.= "};";
-	$buf.="</script>";
-
-	echo $buf;
-});
-
 function exec_wheather_service($req) {
+	
 	$key = '66707be6afe741429f83473ace17bb13';
 	
 	$qry = $req->get_param('qry');
