@@ -73,8 +73,12 @@ function exec_wheather_service($req) {
 	$qry = $req->get_param('qry');
 	$qry = preg_replace('/\s+/', '_', $qry);
 
+	$lng = 'de';
+
 	$url = 'http://api.weatherstack.com/current';
-	$url.= '?access_key='.$key.'&query='.$qry;
+	$url.= '?access_key='.$key;
+	$url.= '&query='.$qry;
+	// $url.= '&language='.$lng;
 	
 	if(function_exists('curl_version')){
 
