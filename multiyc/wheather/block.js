@@ -19,7 +19,7 @@
         return el( 
             
             'div', {
-                id: props.rid,
+                rid: props.rid,
                 loc: props.location,
                 service: props.service,
                 class: 'multiyc-wheather-client-div '+props.rid
