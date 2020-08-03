@@ -90,8 +90,9 @@ MultiYC.consumeWheatherService = function(qry, rid){;
             var wind_dir = String(json.current.wind_dir);
                 wind_dir = wind_dir.replace(/[^NWSE]/g, '');
                     
-            var name = json.location.name;
-            var country = json.location.country;
+            var name = String(json.location.name);
+
+            var country = String(json.location.country);
             
             var snowIcon = MultiYC.getIconByIndex(parseInt(json.current.weather_code));
 
