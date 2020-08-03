@@ -1,4 +1,6 @@
-function getIconByIndex(widx){
+var MultiYC = {};
+
+MultiYC.getIconByIndex = function(widx){
 
     var widxs = [
         // cloud
@@ -53,7 +55,7 @@ function getIconByIndex(widx){
     return icons[pos];
 }
 
-function consumeWheatherService(qry, rid){;
+MultiYC.consumeWheatherService = function(qry, rid){;
 
     var url = '';
         url+= '/?rest_route=/multiyc/wheather';
@@ -85,7 +87,7 @@ function consumeWheatherService(qry, rid){;
             var name = json.location.name;
             var country = json.location.country;
             
-            var snowIcon = getIconByIndex(parseInt(json.current.weather_code));
+            var snowIcon = MultiYC.getIconByIndex(parseInt(json.current.weather_code));
 
             document.getElementById('location:' +rid).innerHTML = name +', ' +country;
             document.getElementById('temperature:' +rid).innerHTML = temperature;

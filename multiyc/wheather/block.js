@@ -14,7 +14,7 @@
         }
         
         var js = '';
-            js+= 'consumeWheatherService("'+props.location+'", "'+props.rid+'");';
+            js+= 'MultiYC.consumeWheatherService("'+props.location+'", "'+props.rid+'");';
         
         return el( 
             
