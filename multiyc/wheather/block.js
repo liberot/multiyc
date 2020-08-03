@@ -16,13 +16,39 @@
         var js = '';
             js+= 'consumeWheatherService("'+props.location+'", "'+props.rid+'");';
         
+        /*
+        var js = '';
+            js+= 'var rid="' +props.rid +'";';
+            js+= 'var qry="";';
+            js+= 'qry+="' +props.location +'";';
+            js+= 'var url="";';
+            js+= 'url+="/?rest_route=/multiyc/wheather";';
+            js+= 'url+= "/"+qry;';
+            js+= 'var req = new XMLHttpRequest();';
+            js+= 'req.addEventListener("load", ()=> {';   
+            js+= 'var json = JSON.parse(req.responseText);';
+            js+= 'var temperature = json.current.temperature;';
+            js+= 'var wind_speed = json.current.wind_speed;';
+            js+= 'var wind_dir = json.current.wind_dir;';
+            js+= 'var name = json.location.name;';
+            js+= 'var region = json.location.region;';
+            js+= 'document.getElementById("location:" +rid).innerHTML = name +", " +region;';
+            js+= 'document.getElementById("temperature:" +rid).innerHTML = temperature;';
+            js+= 'document.getElementById("wind_speed:" +rid).innerHTML = wind_speed;';
+            js+= 'document.getElementById("wind_dir:" +rid).innerHTML = wind_dir;';
+            js+= '});';
+            js+= 'req.open("GET", url);';
+            js+= 'req.send();';
+        */
+            
         return el( 
             
             'div', {
+                id: props.rid,
                 rid: props.rid,
                 loc: props.location,
                 service: props.service,
-                class: 'multiyc-wheather-client-div '+props.rid
+                class: 'multiyc-wheather-client-div'
             },
 
             el( 'div', { id: 'location:' +props.rid, class: 'location' }, props.location ),

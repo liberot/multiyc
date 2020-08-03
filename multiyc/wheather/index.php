@@ -54,9 +54,9 @@ add_action('wp_head', function() {
 	$buf.= "   var url = '';";
 	$buf.= "   url+= '/?rest_route=/multiyc/wheather';";
 	$buf.= "   url+= '/'+qry;";
-	$buf.= "   var xhr = new XMLHttpRequest();";
-	$buf.= "   xhr.addEventListener('load', ()=> {";
-	$buf.= "      var json = JSON.parse(xhr.responseText);";
+	$buf.= "   var req = new XMLHttpRequest();";
+	$buf.= "   req.addEventListener('load', ()=> {";
+	$buf.= "      var json = JSON.parse(req.responseText);";
 	$buf.= "      var temperature = json.current.temperature;";
 	$buf.= "      var wind_speed = json.current.wind_speed;";
 	$buf.= "      var wind_dir = json.current.wind_dir;";
@@ -67,8 +67,8 @@ add_action('wp_head', function() {
 	$buf.= "      document.getElementById('wind_speed:' +rid).innerHTML = wind_speed;";
 	$buf.= "      document.getElementById('wind_dir:' +rid).innerHTML = wind_dir;";
 	$buf.= "   });";
-	$buf.= "   xhr.open('GET', url);";
-	$buf.= "   xhr.send();";
+	$buf.= "   req.open('GET', url);";
+	$buf.= "   req.send();";
 	$buf.= "};";
 	$buf.="</script>";
 
