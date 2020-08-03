@@ -17,7 +17,8 @@
 
 .multiyc-wheather-client-div > .temperatur-title, 
 .multiyc-wheather-client-div > .winddir-title,
-.multiyc-wheather-client-div > .windspeed-title
+.multiyc-wheather-client-div > .windspeed-title,
+.multiyc-wheather-client-div > .weathericon-title
 {
 	font-size: 0.75em;
 	color: #000;

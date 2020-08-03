@@ -62,6 +62,9 @@
             el( 'div', { class: 'winddir-title' }, __('Direction:') ),
             el( 'div', { id: 'wind_dir:' +props.rid, class: 'wind-dir' } ),
             
+            el( 'div', { class: 'weathericon-title' }, __('Icon:') ),
+            el( 'img', { id: 'weather_icon:' +props.rid, class: 'weather-icon' } ),
+            
             el( 'script', { type: 'text/javascript' }, js )
         );
     }
