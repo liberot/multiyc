@@ -17,16 +17,25 @@
             js+= 'consumeWheatherService("'+props.location+'", "'+props.rid+'");';
         
         return el( 
+            
             'div', {
+                id: props.rid,
                 loc: props.location,
-                rid: props.rid,
                 service: props.service,
                 class: 'multiyc-wheather-client-div '+props.rid
             },
+
             el( 'div', { id: 'location:' +props.rid, class: 'location' }, props.location ),
+            
+            el( 'div', { class: 'temperatur-title' }, __('Temperature:') ),
             el( 'div', { id: 'temperature:' +props.rid, class: 'temperature' } ),
+            
+            el( 'div', { class: 'windspeed-title' }, __('Speed:') ),
             el( 'div', { id: 'wind_speed:' +props.rid, class: 'wind-speed' } ),
+            
+            el( 'div', { class: 'winddir-title' }, __('Direction:') ),
             el( 'div', { id: 'wind_dir:' +props.rid, class: 'wind-dir' } ),
+            
             el( 'script', { type: 'text/javascript' }, js )
         );
     }
