@@ -3,7 +3,7 @@
 /**
  * Plugin Name: MultiYC
  * Plugin URI: https://myc.multiyc.de
- * Description: Wheather Service Plugin
+ * Description: Weather Service Plugin
  * Version: 1.1.0
  * Author: 
  *
@@ -12,4 +12,4 @@
 
 defined( 'ABSPATH' ) || exit;
 
-include 'wheather/index.php';
+include 'weather/index.php';
