@@ -81,6 +81,7 @@ MultiYC.consumeWeatherService = function(qry, rid){;
 
             var resultTemplate = '';
                 resultTemplate+= '<div class="weather-blocks">';
+                resultTemplate+= '<div class="location">'+String(json.location)+'</div>';
                 resultTemplate+= '<div class="weather-icon">'+String(snocIconClass)+'</div>';
                 resultTemplate+= '<div class="temperature">'+String(json.temperatureCelsius)+'&nbsp;°C</div>';
                 resultTemplate+= '<div class="wind-dir">'+String(json.windDirection)+'</div>';
