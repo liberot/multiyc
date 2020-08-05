@@ -54,7 +54,8 @@
         edit: function(model) {
 
             var setLocation = function(event) {
-                model.attributes.location = event.target.value;;
+                // model.attributes.location = event.target.value;
+                model.setAttributes({ location: event.target.value });
                 event.preventDefault();
             }
 
