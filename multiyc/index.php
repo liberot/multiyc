@@ -5,7 +5,7 @@
  * Plugin URI: https://myc.multiyc.de
  * Description: Weather Service Plugin
  * Version: 1.1.0
- * Author: 
+ * Author: VB und ja.do
  *
  * @package multiyc
  */
