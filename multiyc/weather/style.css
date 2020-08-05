@@ -4,7 +4,7 @@
 
 }
 
-.weather-blocks : hover {
+.weather-blocks:hover {
 
 }
 
@@ -75,9 +75,8 @@ base64 mimetypes might work dunno
 
 /* editor related */
 .multiyc-weather-editor-form {
-	border-radius: 5px;
-	background-color: #fff;
-	padding: 8px;
+	background-color: #ffffff;
+	padding: 4px;
 	border-color: #000000;
 }
 
@@ -89,9 +88,14 @@ base64 mimetypes might work dunno
 	font-size: 1em;
 	font-style: italic;
 	font-family: serif;
+	color: #000000;
+	line-height: 1.3;
+
 }
 
 .multiyc-weather-editor-form > .multiyc-description {
-	font-size: 0.75em;
+	font-size: 0.65em;
 	font-family: serif;
+	color: #000000;
+	line-height: 1.3;
 }
