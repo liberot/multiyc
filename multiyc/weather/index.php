@@ -92,10 +92,11 @@ function exec_weather_service($req) {
 function setup_data_provider($json) {
 	$coll = json_decode($json);
 	$res = [];
-	$res['temperature']= (int) preg_replace('/\D/', '', $coll->current->temperature);
+	$res['temperatureCelsius']= (int) preg_replace('/\D/', '', $coll->current->temperature);
 	$res['windSpeedKmh']= (int) preg_replace('/\D/', '', $coll->current->wind_speed);
 	$res['windSpeedKnots'] = (int) kmhToKnots($res['windSpeedKmh']);
 	$res['windDirection']= preg_replace('/[^NWSEO]/', '', $coll->current->wind_dir);
+	$res['windDirection']= preg_replace('/[E]/', 'O', $coll->current->wind_dir);
 	$res['weatherCode'] = (int) preg_replace('/\D/', '', $coll->current->weather_code);
 	$res['location'] = $coll->location->name;
 	return json_encode($res);

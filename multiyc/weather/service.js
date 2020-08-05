@@ -62,7 +62,7 @@ MultiYC.consumeWeatherService = function(qry, rid){;
         req.addEventListener('load', ()=> {
             
             if(200 != req.status){
-                console.log(req.status);
+                console.log(req.status, req.responseText);
                 return;
             };
             
@@ -81,11 +81,13 @@ MultiYC.consumeWeatherService = function(qry, rid){;
 
             var resultTemplate = '';
                 resultTemplate+= '<div class="weather-blocks">';
-                resultTemplate+= '<div class="weather-icon">' +snocIconClass +'</div>';
-                resultTemplate+= '<div class="temperature">' +json.temperature +'</div>';
-                resultTemplate+= '<div class="wind-dir">' +json.windDirection +'</div>';
-                resultTemplate+= '<div class="wind-speed">' +json.windSpeedKnots +'</div>';
-                resultTemplate+= '</div>'
+                resultTemplate+= '<div class="weather-icon">'+String(snocIconClass)+'</div>';
+                resultTemplate+= '<div class="temperature">'+String(json.temperatureCelsius)+'&nbsp;°C</div>';
+                resultTemplate+= '<div class="wind-dir">'+String(json.windDirection)+'</div>';
+                resultTemplate+= '<div class="wind-speed">'+String(json.windSpeedKnots)+'&nbsp;kn</div>';
+                resultTemplate+= '</div>';
+
+            // console.log(resultTemplate);
             
             document.getElementById(rid).innerHTML = resultTemplate;
         });

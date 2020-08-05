@@ -17,6 +17,7 @@
             script+= 'MultiYC.consumeWeatherService("'+model.attributes.location+'", "'+model.attributes.id+'");';
         
         return el( 
+        
             'div', {                
                 id: model.attributes.id,
                 loc: model.attributes.location
@@ -36,17 +37,17 @@
         attributes: {
             
             id: {
-                type: 'string',
-                source: 'attribute',
-                attribute: 'id',
                 selector: 'div',
+                attribute: 'id',
+                source: 'attribute',
+                type: 'string'
             },
 
             location: {
-                type: 'string',
-                source: 'attribute',
-                attribute: 'loc',
                 selector: 'div',
+                attribute: 'loc',
+                type: 'string',
+                source: 'attribute'
             }
         },
 
@@ -58,6 +59,7 @@
             }
 
             var node = [];
+        
                 node.push(
                     el ( 'div', { class: 'multiyc-title' }, __('MutliYC Wetterwidget') ),
                     el ( 'div', { class: 'multiyc-description' }, __('Ort eingeben und Seite speichern (Aktualisieren)') )
