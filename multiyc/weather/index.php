@@ -77,7 +77,7 @@ function exec_weather_service($req) {
 		curl_setopt($crl, CURLOPT_SSL_VERIFYHOST, 0);
 		$res = curl_exec($crl);
 		curl_close($crl);
-		$res = setup_data_provider($res);		
+		$res = setup_dataprovider($res);		
 		header('Content-Type: application/json');
 		echo $res;
 
@@ -89,14 +89,17 @@ function exec_weather_service($req) {
 	echo $res;
 }
 
-function setup_data_provider($json) {
+function setup_dataprovider($json) {
 	$coll = json_decode($json);
 	$res = [];
-	$res['temperatureCelsius']= (int) preg_replace('/\D/', '', $coll->current->temperature);
-	$res['windSpeedKmh']= (int) preg_replace('/\D/', '', $coll->current->wind_speed);
+	$res['timestamp'] = date('U');
+	$res['date'] = date('yy-m-d h:i:s');
+	$res['timezone'] = date_default_timezone_get();
+	$res['temperatureCelsius'] = (int) preg_replace('/\D/', '', $coll->current->temperature);
+	$res['windSpeedKmh'] = (int) preg_replace('/\D/', '', $coll->current->wind_speed);
 	$res['windSpeedKnots'] = (int) kmhToKnots($res['windSpeedKmh']);
-	$res['windDirection']= preg_replace('/[^NWSEO]/', '', $coll->current->wind_dir);
-	$res['windDirection']= preg_replace('/[E]/', 'O', $coll->current->wind_dir);
+	$res['windDirection'] = preg_replace('/[^NWSEO]/', '', $coll->current->wind_dir);
+	$res['windDirection'] = preg_replace('/[E]/', 'O', $coll->current->wind_dir);
 	$res['weatherCode'] = (int) preg_replace('/\D/', '', $coll->current->weather_code);
 	$res['location'] = $coll->location->name;
 	return json_encode($res);

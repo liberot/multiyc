@@ -77,19 +77,17 @@ MultiYC.consumeWeatherService = function(qry, rid){;
                 return;
             };
 
-            var snocIconClass = MultiYC.getIconByIndex(parseInt(json.weatherCode));
+            var icon = MultiYC.getIconByIndex(parseInt(json.weatherCode));
 
             var resultTemplate = '';
                 resultTemplate+= '<div class="weather-blocks">';
                 resultTemplate+= '<div class="location">'+String(json.location)+'</div>';
-                resultTemplate+= '<div class="weather-icon">'+String(snocIconClass)+'</div>';
+                resultTemplate+= '<div class="weather-icon">'+String(icon)+'</div>';
                 resultTemplate+= '<div class="temperature">'+String(json.temperatureCelsius)+'&nbsp;°C</div>';
                 resultTemplate+= '<div class="wind-dir">'+String(json.windDirection)+'</div>';
                 resultTemplate+= '<div class="wind-speed">'+String(json.windSpeedKnots)+'&nbsp;kn</div>';
                 resultTemplate+= '</div>';
 
-            // console.log(resultTemplate);
-            
             document.getElementById(rid).innerHTML = resultTemplate;
         });
     
