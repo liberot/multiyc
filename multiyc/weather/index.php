@@ -122,7 +122,9 @@ function kmhToKnots($kmh) {
 // https://developer.wordpress.org/rest-api/extending-the-rest-api/adding-custom-endpoints/
 // https://developer.wordpress.org/rest-api/key-concepts/
 // http://127.0.0.1:8083/?rest_route=/multiyc/weather/Brooklyn Miami
-add_action('rest_api_init', function() {
+// https://make.wordpress.org/core/2020/07/22/rest-api-changes-in-wordpress-5-5/
+add_action('rest_api_init', 'add_multiyc_rest_route');
+function add_multiyc_rest_route() {
 	register_rest_route(
 		'multiyc', '/weather/(?P<qry>[a-zA-Z0-9-_\s+]+)', 
 			array(
@@ -131,5 +133,5 @@ add_action('rest_api_init', function() {
 				'permission_callback'=>'__return_true'
 			)
 	);
-});
+};
 
