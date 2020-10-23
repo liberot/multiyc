@@ -128,6 +128,7 @@ add_action('rest_api_init', function() {
 			array(
 				'methods'=>'GET',
 				'callback'=>'exec_weather_service',
+				'permission_callback'=>'__return_true'
 			)
 	);
 });
