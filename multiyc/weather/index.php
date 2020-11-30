@@ -78,14 +78,14 @@ function exec_weather_service($req) {
 		$res = curl_exec($crl);
 		curl_close($crl);
 		$res = setup_dataprovider($res);		
-		header('Content-Type: application/json');
+//		header('Content-Type: application/json');
 		echo $res;
 
 		return;
 	}
 	
 	$res = @file_get_contents($url);
-	header('Content-Type: text/html');
+// 	header('Content-Type: text/html');
 	echo $res;
 }
 
